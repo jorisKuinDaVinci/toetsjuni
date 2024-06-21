@@ -1,5 +1,5 @@
-from get_all_cars import get_all_cars
-from get_destination_by_name import get_destination
+from get_all_cars import *
+from get_destination_by_name import *
 
 def list_sahara_cars(destination_name: str) -> list:
     cars = []
