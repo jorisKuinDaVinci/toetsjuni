@@ -1,5 +1,14 @@
 import sqlite3
-import get_all_cars
+#import get_all_cars
+
+def get_all_cars() -> list:
+    # Voorbeeldimplementatie: zorg ervoor dat het een lijst van woordenboeken retourneert
+    return [
+        {'name': 'Auto A', 'usage': 0.08, 'tankvolume': 50},
+        {'name': 'Auto B', 'usage': 0.1, 'tankvolume': 60},
+        {'name': 'Auto C', 'usage': 0.06, 'tankvolume': 40},
+        # Voeg meer auto's toe indien nodig
+    ]
 
 def get_destination_by_name(destination_name: str) -> int:
     # Maak verbinding met de database en haal de afstand op voor de opgegeven bestemmingsnaam
