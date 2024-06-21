@@ -17,9 +17,8 @@ def list_sahara_cars(destination_name: str) -> list:
  
     # code om de cars te selecteren die de afstand in één keer kunnen overbruggen
     cars = get_all_cars()
-    filtered_cars = [car for car in cars if car["usage"] * car["tankvolume"] >= distance]
 
-    return filtered_cars
+    return cars
  
 # code om de cars te selecteren die de afstand in één keer kunnen overbruggen
  
