@@ -1,16 +1,15 @@
 import sqlite3
 
 def get_destination(destination_name):
-
-    conn = sqlite3.connect('travel.db')
-    cursor = conn.cursor()
-
-    cursor.execute('SELECT * FROM destinations WHERE name = ?', (destination_name,))
-    destination = cursor.fetchone()
-
-    conn.close()
-
-    return destination
+    try:
+        with sqlite3.connect('travel.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute('SELECT * FROM destinations WHERE name = ?', (destination_name,))
+            destination = cursor.fetchone()
+            return destination
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return None
 
 destination_name = 'Cairo'
 destination = get_destination(destination_name)

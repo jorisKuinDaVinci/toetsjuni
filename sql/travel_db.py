@@ -1,18 +1,21 @@
 import sqlite3
 
+# Verbinding maken met de database
 conn = sqlite3.connect('travel_db.db')
 cursor = conn.cursor()
 
+# Tabel 'cars' maken
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS cars (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         brand TEXT NOT NULL,
         model TEXT NOT NULL,
-        usage REAL NOT NULL,  -- Changed to REAL to reflect kilometers per liter
-        tankvolume REAL NOT NULL
+        usage REAL NOT NULL,  -- Brandstofverbruik in km/l
+        tankvolume REAL NOT NULL  -- Tankinhoud in liters
     )
 ''')
 
+# Gegevens voor 'cars' invoegen
 cars = [
     ('Toyota', 'Corolla', 15.0, 50.0),
     ('Honda', 'Civic', 14.5, 47.0),
@@ -31,14 +34,16 @@ cursor.executemany('''
     VALUES (?, ?, ?, ?)
 ''', cars)
 
+# Tabel 'destinations' maken (corrigeer de naam)
 cursor.execute('''
-    CREATE TABLE IF NOT EXISTS destinies (
+    CREATE TABLE IF NOT EXISTS destinations (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
-        distance REAL NOT NULL  -- Distance in kilometers
+        distance REAL NOT NULL  -- Afstand in kilometers
     )
 ''')
 
+# Gegevens voor 'destinations' invoegen
 destinations = [
     ('Tunis', 300.0),
     ('Tripoli', 600.0),
@@ -52,6 +57,7 @@ cursor.executemany('''
     VALUES (?, ?)
 ''', destinations)
 
+# Wijzigingen opslaan en de verbinding sluiten
 conn.commit()
 conn.close()
 
