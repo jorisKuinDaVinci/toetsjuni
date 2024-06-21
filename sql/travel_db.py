@@ -1,7 +1,7 @@
 import sqlite3
 
 # Verbinding maken met de database
-conn = sqlite3.connect('travel_db.db')
+conn = sqlite3.connect('travel.db')
 cursor = conn.cursor()
 
 # Tabel 'cars' maken
