@@ -1,14 +1,16 @@
 import sqlite3
-#import get_all_cars
 
-def get_all_cars() -> list:
-    # Voorbeeldimplementatie: zorg ervoor dat het een lijst van dicts returnt
-    return [
-        {'name': 'Auto A', 'usage': 0.08, 'tankvolume': 50},
-        {'name': 'Auto B', 'usage': 0.1, 'tankvolume': 60},
-        {'name': 'Auto C', 'usage': 0.06, 'tankvolume': 40},
-        # Voeg meer auto's toe indien nodig
-    ]
+def get_all_cars():
+    try:
+        with sqlite3.connect('travel.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute('SELECT * FROM cars')
+            cars = cursor.fetchall()
+            return cars
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return []
+
 
 def get_destination_by_name(destination_name: str) -> int:
     # Maak verbinding met de database en haal de afstand op voor de opgegeven bestemmingsnaam
