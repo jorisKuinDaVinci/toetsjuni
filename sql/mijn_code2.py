@@ -23,7 +23,7 @@ def list_sahara_cars(destination_name: str) -> list:
     distance = get_destination_by_name(destination_name)
 
     # Haal alle auto's op
-    cars = get_all_cars()
+    cars = get_all_cars()  # Dit roept de functie get_all_cars() aan
 
     # Filter de auto's die de afstand in één keer kunnen afleggen
     filtered_cars = [car for car in cars if car['usage'] * car['tankvolume'] >= distance]
