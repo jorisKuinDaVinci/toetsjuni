@@ -24,13 +24,13 @@ def get_destination_by_name(destination_name: str) -> int:
             result = cursor.fetchone()
 
             if result:
-                return result[0]  # Assuming distance is stored as an integer in the database
+                return result[0]
             else:
                 raise ValueError(f"Bestemming '{destination_name}' niet gevonden in de database.")
 
     except sqlite3.Error as e:
         print(f"Database error: {e}")
-        return 0  # Return a default value or handle the error appropriately
+        return 0
 
 def list_sahara_cars(destination_name: str) -> list:
     # Haal de afstand naar de bestemming op
