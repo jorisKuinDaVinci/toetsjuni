@@ -30,3 +30,4 @@ cars = list_sahara_cars('Cairo')
 Los de fout(en) op in de aangeleverde code!
 Maak ook extra code om het resultaat (een lijst met geschikte auto's) te printen.
 Schrijf testen in de code voor alle mogelijke destinations uit de database.
+Schrijf ook testen in de code voor destinations die niet voorkomen in de database.
