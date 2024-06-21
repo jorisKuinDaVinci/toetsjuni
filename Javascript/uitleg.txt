@@ -1,0 +1,20 @@
+Je was aan het kamperen met je vrienden ver weg van huis, maar als het tijd is om terug te gaan, realiseer je je dat je brandstof bijna op is en het dichtstbijzijnde tankstation is 80 kilometer verderop! 
+Je weet dat je auto gemiddeld ongeveer 10 kilometer per liter rijdt. 
+Je hebt nog 8 liter over.
+
+ 
+
+Schrijf een functie die je vertelt of het mogelijk is om bij het tankstation te komen of niet.
+
+De functie moet true teruggeven als het mogelijk is en false als dat niet zo is.
+
+Opdracht:
+
+Maak de volgende JS functie af:
+function kanBereikenTankstation(kilometersNaarTankstation, kilometersPerLiter, resterendeLiters) {
+    
+    return false;
+    
+}
+Schrijf minimaal 6 testen. Dat mag op de volgende manier: 
+console.log(kanBereikenTankstation(80, 10, 8));
