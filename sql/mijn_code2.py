@@ -2,7 +2,7 @@ import sqlite3
 #import get_all_cars
 
 def get_all_cars() -> list:
-    # Voorbeeldimplementatie: zorg ervoor dat het een lijst van woordenboeken retourneert
+    # Voorbeeldimplementatie: zorg ervoor dat het een lijst van dicts returnt
     return [
         {'name': 'Auto A', 'usage': 0.08, 'tankvolume': 50},
         {'name': 'Auto B', 'usage': 0.1, 'tankvolume': 60},
