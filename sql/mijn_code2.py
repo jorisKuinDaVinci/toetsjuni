@@ -13,31 +13,47 @@ def get_all_cars():
 
 
 def get_destination_by_name(destination_name: str) -> int:
-    # Maak verbinding met de database en haal de afstand op voor de opgegeven bestemmingsnaam
-    conn = sqlite3.connect('travel.db')
-    cursor = conn.cursor()
-    cursor.execute('''
-        SELECT distance
-        FROM destinations
-        WHERE name = ?
-    ''', (destination_name,))
-    result = cursor.fetchone()
-    conn.close()
+    try:
+        with sqlite3.connect('travel.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                SELECT distance
+                FROM destinations
+                WHERE name = ?
+            ''', (destination_name,))
+            result = cursor.fetchone()
 
-    if result:
-        return result[0]
-    else:
-        raise ValueError(f"Bestemming '{destination_name}' niet gevonden in de database.")
+            if result:
+                return result[0]  # Assuming distance is stored as an integer in the database
+            else:
+                raise ValueError(f"Bestemming '{destination_name}' niet gevonden in de database.")
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return 0  # Return a default value or handle the error appropriately
 
 def list_sahara_cars(destination_name: str) -> list:
     # Haal de afstand naar de bestemming op
     distance = get_destination_by_name(destination_name)
 
+    try:
+        distance = int(distance)  # Zorg ervoor dat distance een integer is
+    except (TypeError, ValueError):
+        raise ValueError(f"Afstand naar bestemming '{destination_name}' is niet geldig.")
+
     # Haal alle auto's op
-    cars = get_all_cars()  # Dit roept de functie get_all_cars() aan
+    cars = get_all_cars()
 
     # Filter de auto's die de afstand in één keer kunnen afleggen
-    filtered_cars = [car for car in cars if car['usage'] * car['tankvolume'] >= distance]
+    filtered_cars = []
+    for car in cars:
+        try:
+            usage = int(car[1])  # Zorg ervoor dat usage een integer is
+            tankvolume = int(car[2])  # Zorg ervoor dat tankvolume een integer is
+            if usage * tankvolume >= distance:
+                filtered_cars.append(car)
+        except (TypeError, ValueError):
+            continue
 
     return filtered_cars
 
