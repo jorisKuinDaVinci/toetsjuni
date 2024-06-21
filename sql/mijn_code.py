@@ -1,5 +1,5 @@
-from get_all_cars import *
-from get_destination_by_name import *
+from get_all_cars import get_all_cars
+from get_destination_by_name import get_destination
 import sqlite3
 
 def list_sahara_cars(destination_name: str) -> list:
