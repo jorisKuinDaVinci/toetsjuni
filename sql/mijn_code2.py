@@ -66,9 +66,23 @@ def print_suitable_cars(cars: list) -> None:
         for car in cars:
             print(f"Auto: {car['name']}, Verbruik: {car['usage']} L/km, Tankinhoud: {car['tankvolume']} L")
 
+# voeg dordrecht toe als bestemming
+def add_destination(name: str, distance: int) -> None:
+    try:
+        with sqlite3.connect('travel.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                INSERT INTO destinations (name, distance)
+                VALUES (?, ?)
+            ''', (name, distance))
+            conn.commit()
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+
+add_destination('Dordrecht', 1)
 # Voorbeeldgebruik
 try:
-    cars = list_sahara_cars('Cairo')
+    cars = list_sahara_cars('Tripoli')
     print_suitable_cars(cars)
 except ValueError as e:
     print(e)
